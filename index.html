@@ -1,0 +1,1132 @@
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>우리 둘의 조합이 낳을 축구선수는?</title>
+
+    <!-- SEO meta -->
+    <meta
+      name="description"
+      content="나와 상대방의 생일을 입력하면, 우리 둘의 조합이 낳을 축구선수 타입을 랜덤(하지만 그럴듯하게) 매칭해드립니다. 결과는 바로 공유 가능!"
+    />
+    <meta
+      name="keywords"
+      content="축구 테스트, 생일 궁합, 축구선수 타입, 랜덤 테스트, 커플 테스트, 재미 테스트, football dna"
+    />
+    <meta name="author" content="FunnyFunny" />
+    <link rel="canonical" href="https://funnyfunny.cloud/" />
+
+    <!-- OG / Twitter -->
+    <meta property="og:title" content="우리 둘의 조합이 낳을 축구선수는?" />
+    <meta
+      property="og:description"
+      content="생일 2개만 입력하면 끝. 우리 조합에서 태어날 축구 DNA를 공개합니다 ⚽"
+    />
+    <meta property="og:type" content="website" />
+    <!-- ✅ 실제 동작 더미 이미지(placeholder/ dummyimage.com 금지) -->
+    <meta
+      property="og:image"
+      content="https://picsum.photos/seed/our-football-dna/1200/630"
+    />
+    <meta property="og:image:alt" content="Our Football DNA Result" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="우리 둘의 조합이 낳을 축구선수는?" />
+    <meta
+      name="twitter:description"
+      content="생일 2개만 입력하면 끝. 우리 조합에서 태어날 축구 DNA를 공개합니다 ⚽"
+    />
+    <meta
+      name="twitter:image"
+      content="https://picsum.photos/seed/our-football-dna/1200/630"
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='0.9em'%20font-size='90'%3E%E2%9A%BD%3C/text%3E%3C/svg%3E"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Pretendard:wght@400;600;700&display=swap");
+      :root {
+        --bg0: #060712;
+        --bg1: #0b1020;
+        --card: #0f172a;
+      }
+      body {
+        font-family: Pretendard, system-ui, -apple-system, Segoe UI, Roboto,
+          sans-serif;
+        background: radial-gradient(
+            1200px 600px at 10% 0%,
+            rgba(59, 130, 246, 0.25),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 500px at 90% 20%,
+            rgba(34, 197, 94, 0.18),
+            transparent 60%
+          ),
+          linear-gradient(180deg, var(--bg0), var(--bg1));
+      }
+      .glass {
+        background: rgba(15, 23, 42, 0.62);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        backdrop-filter: blur(10px);
+      }
+      .shine {
+        position: relative;
+        overflow: hidden;
+      }
+      .shine::after {
+        content: "";
+        position: absolute;
+        inset: -40%;
+        background: linear-gradient(
+          120deg,
+          transparent 35%,
+          rgba(255, 255, 255, 0.1) 50%,
+          transparent 65%
+        );
+        transform: translateX(-30%);
+        animation: sweep 3.8s infinite;
+      }
+      @keyframes sweep {
+        0% {
+          transform: translateX(-55%);
+        }
+        45% {
+          transform: translateX(70%);
+        }
+        100% {
+          transform: translateX(70%);
+        }
+      }
+      .fade-in {
+        animation: fade 0.28s ease-out both;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen text-slate-100">
+    <header class="max-w-5xl mx-auto px-4 pt-8 pb-4">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <p class="text-xs uppercase tracking-widest text-slate-300/70">
+            Football DNA Simulator
+          </p>
+          <h1 class="text-3xl sm:text-4xl font-extrabold mt-2 leading-tight">
+            우리 둘의 조합이 낳을
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 via-emerald-200 to-lime-200"
+              >축구선수</span
+            >는?
+          </h1>
+          <p class="text-slate-200/80 mt-3 max-w-xl">
+            생일 2개만 입력하면 끝. 랜덤인데… 이상하게 그럴듯한 결과가 나옵니다
+            ⚽
+          </p>
+        </div>
+
+        <!-- ✅ 기본 포함: 다른 서비스 보기 -->
+        <a
+          href="https://funnyfunny.cloud/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="shrink-0 inline-flex items-center gap-2 rounded-2xl px-4 py-3 glass hover:bg-white/10 transition"
+        >
+          <span class="text-lg">🧩</span>
+          <span class="font-semibold">다른 서비스 보기</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 pb-10">
+      <section class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+        <!-- Input Card -->
+        <div class="lg:col-span-2 glass rounded-3xl p-5 sm:p-6">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xl font-bold">생일 입력</h2>
+            <span class="text-xs text-slate-300/70">No DB · Local Only</span>
+          </div>
+
+          <div class="mt-5 space-y-4">
+            <label class="block">
+              <span class="text-sm text-slate-200/90">내 생일</span>
+              <input
+                id="birthA"
+                type="date"
+                class="mt-2 w-full rounded-2xl px-4 py-3 bg-slate-950/60 border border-slate-700/40 focus:outline-none focus:ring-2 focus:ring-sky-400/60"
+              />
+            </label>
+
+            <label class="block">
+              <span class="text-sm text-slate-200/90">상대방 생일</span>
+              <input
+                id="birthB"
+                type="date"
+                class="mt-2 w-full rounded-2xl px-4 py-3 bg-slate-950/60 border border-slate-700/40 focus:outline-none focus:ring-2 focus:ring-emerald-400/60"
+              />
+            </label>
+
+            <label class="block">
+              <span class="text-sm text-slate-200/90">관계 타입 (선택)</span>
+              <div class="mt-2 grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  data-rel="연인"
+                  class="relBtn rounded-2xl px-3 py-3 glass hover:bg-white/10 transition text-sm"
+                >
+                  💞 연인
+                </button>
+                <button
+                  type="button"
+                  data-rel="썸"
+                  class="relBtn rounded-2xl px-3 py-3 glass hover:bg-white/10 transition text-sm"
+                >
+                  😶‍🌫️ 썸
+                </button>
+                <button
+                  type="button"
+                  data-rel="부부"
+                  class="relBtn rounded-2xl px-3 py-3 glass hover:bg-white/10 transition text-sm"
+                >
+                  💍 부부
+                </button>
+                <button
+                  type="button"
+                  data-rel="그냥 궁금"
+                  class="relBtn rounded-2xl px-3 py-3 glass hover:bg-white/10 transition text-sm"
+                >
+                  👀 그냥
+                </button>
+              </div>
+              <input id="relation" type="hidden" value="그냥 궁금" />
+            </label>
+
+            <button
+              id="goBtn"
+              class="w-full rounded-2xl px-4 py-4 font-extrabold text-slate-950 bg-gradient-to-r from-sky-300 via-emerald-200 to-lime-200 hover:opacity-95 active:scale-[0.99] transition"
+            >
+              결과 보기 ⚽
+            </button>
+
+            <p class="text-xs text-slate-300/70 leading-relaxed">
+              * 이 서비스는 재미용 시뮬레이터입니다. 입력값은 저장되지 않습니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- Preview/Result Area -->
+        <div class="lg:col-span-3">
+          <div id="hero" class="glass rounded-3xl p-5 sm:p-6 shine">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="text-xl font-bold">오늘의 예고편</h3>
+                <p class="text-slate-200/80 mt-2">
+                  여러분의 조합에서 나올 선수는
+                  <span class="font-semibold">포지션</span>,
+                  <span class="font-semibold">스타일</span>,
+                  <span class="font-semibold">밈력</span>까지 함께 매칭됩니다.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 rounded-full bg-white/10 border border-white/10 text-sm"
+                    >🎯 그럴듯 랜덤</span
+                  >
+                  <span
+                    class="px-3 py-1 rounded-full bg-white/10 border border-white/10 text-sm"
+                    >🧬 조합 해석</span
+                  >
+                  <span
+                    class="px-3 py-1 rounded-full bg-white/10 border border-white/10 text-sm"
+                    >📣 공유 최적화</span
+                  >
+                </div>
+              </div>
+              <img
+                alt="Soccer"
+                class="w-28 h-28 rounded-2xl object-cover border border-white/10"
+                src="https://picsum.photos/seed/football-dna-cover/240/240"
+              />
+            </div>
+          </div>
+
+          <div id="resultWrap" class="hidden mt-5">
+            <div class="glass rounded-3xl overflow-hidden">
+              <div class="p-5 sm:p-6 border-b border-white/10">
+                <div class="flex items-center justify-between gap-3">
+                  <div>
+                    <p
+                      id="resultEyebrow"
+                      class="text-xs uppercase tracking-widest text-slate-300/70"
+                    >
+                      Your Result
+                    </p>
+                    <h2
+                      id="resultTitle"
+                      class="text-2xl sm:text-3xl font-extrabold mt-2"
+                    ></h2>
+                    <p id="resultSub" class="text-slate-200/80 mt-2"></p>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-xs text-slate-300/70">케미</p>
+                    <p id="chem" class="text-2xl font-extrabold"></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-5 gap-0">
+                <div
+                  class="md:col-span-2 p-5 sm:p-6 border-b md:border-b-0 md:border-r border-white/10"
+                >
+                  <img
+                    id="playerImg"
+                    class="w-full aspect-[4/3] rounded-2xl object-cover border border-white/10"
+                    alt="Player Image"
+                    src="https://picsum.photos/seed/player-default/800/600"
+                  />
+                  <div class="mt-4 grid grid-cols-2 gap-2">
+                    <div
+                      class="rounded-2xl bg-white/5 border border-white/10 p-3"
+                    >
+                      <p class="text-xs text-slate-300/70">포지션</p>
+                      <p id="pos" class="font-bold mt-1"></p>
+                    </div>
+                    <div
+                      class="rounded-2xl bg-white/5 border border-white/10 p-3"
+                    >
+                      <p class="text-xs text-slate-300/70">국적</p>
+                      <p id="nation" class="font-bold mt-1"></p>
+                    </div>
+                    <div
+                      class="rounded-2xl bg-white/5 border border-white/10 p-3"
+                    >
+                      <p class="text-xs text-slate-300/70">주발</p>
+                      <p id="foot" class="font-bold mt-1"></p>
+                    </div>
+                    <div
+                      class="rounded-2xl bg-white/5 border border-white/10 p-3"
+                    >
+                      <p class="text-xs text-slate-300/70">무기</p>
+                      <p id="weapon" class="font-bold mt-1"></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="md:col-span-3 p-5 sm:p-6">
+                  <div class="space-y-3">
+                    <div
+                      class="rounded-2xl bg-white/5 border border-white/10 p-4"
+                    >
+                      <p class="text-xs text-slate-300/70">한 줄 판정</p>
+                      <p id="oneLine" class="mt-1 font-semibold"></p>
+                    </div>
+
+                    <div
+                      class="rounded-2xl bg-white/5 border border-white/10 p-4"
+                    >
+                      <p class="text-xs text-slate-300/70">플레이 스타일</p>
+                      <p id="style" class="mt-1"></p>
+                      <div id="tags" class="mt-3 flex flex-wrap gap-2"></div>
+                    </div>
+
+                    <div
+                      class="rounded-2xl bg-white/5 border border-white/10 p-4"
+                    >
+                      <p class="text-xs text-slate-300/70">
+                        유전 해석 (농담 70%, 진심 30%)
+                      </p>
+                      <p
+                        id="dna"
+                        class="mt-1 leading-relaxed text-slate-100/90"
+                      ></p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-2 pt-1">
+                      <button
+                        id="copyBtn"
+                        class="flex-1 rounded-2xl px-4 py-3 font-bold bg-white/10 border border-white/10 hover:bg-white/15 transition"
+                      >
+                        결과 문구 복사 📋
+                      </button>
+                      <button
+                        id="shareBtn"
+                        class="flex-1 rounded-2xl px-4 py-3 font-bold bg-white/10 border border-white/10 hover:bg-white/15 transition"
+                      >
+                        공유하기 🔗
+                      </button>
+                    </div>
+
+                    <!-- ✅ 기본 포함: 다른 서비스 보기 (결과 영역에도) -->
+                    <a
+                      href="https://funnyfunny.cloud/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="block text-center rounded-2xl px-4 py-3 font-bold bg-gradient-to-r from-sky-300/20 via-emerald-200/15 to-lime-200/15 border border-white/10 hover:bg-white/10 transition"
+                    >
+                      다른 서비스 보기 🧩
+                    </a>
+
+                    <p
+                      id="toast"
+                      class="hidden text-sm text-emerald-200 font-semibold"
+                    ></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 glass rounded-3xl p-5 sm:p-6">
+              <p class="text-sm text-slate-200/80 leading-relaxed">
+                ⚠️ 안내: 이 결과는
+                <span class="font-semibold">재미용</span>입니다. 다만… 이상하게
+                친구들이 “맞는 듯?” 하게 되는 그 맛이 핵심입니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="mt-10 text-center text-xs text-slate-300/60">
+        © <span id="y"></span> FunnyFunny · Made for laughs & shares.
+      </footer>
+    </main>
+
+    <script>
+      // ---------- Utilities ----------
+      function clamp(n, a, b) {
+        return Math.max(a, Math.min(b, n));
+      }
+
+      // xmur3 + mulberry32: deterministic seeded RNG
+      function xmur3(str) {
+        let h = 1779033703 ^ str.length;
+        for (let i = 0; i < str.length; i++) {
+          h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+          h = (h << 13) | (h >>> 19);
+        }
+        return function () {
+          h = Math.imul(h ^ (h >>> 16), 2246822507);
+          h = Math.imul(h ^ (h >>> 13), 3266489909);
+          return (h ^= h >>> 16) >>> 0;
+        };
+      }
+      function mulberry32(a) {
+        return function () {
+          let t = (a += 0x6d2b79f5);
+          t = Math.imul(t ^ (t >>> 15), t | 1);
+          t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      function pick(rng, arr) {
+        return arr[Math.floor(rng() * arr.length)];
+      }
+      function pickN(rng, arr, n) {
+        const copy = arr.slice();
+        const out = [];
+        while (out.length < n && copy.length) {
+          const idx = Math.floor(rng() * copy.length);
+          out.push(copy.splice(idx, 1)[0]);
+        }
+        return out;
+      }
+
+      // ---------- Player Dataset (lightweight, no DB) ----------
+      // Note: For fun only. Names are used as "types".
+      const PLAYERS = [
+        {
+          name: "Lionel Messi",
+          nation: "Argentina",
+          pos: "AMF / RW",
+          style: "초근접 드리블 + 템포 조절로 경기 맥을 뽑아먹는 타입",
+          tags: ["GOAT Aura", "Tight Dribble", "Game Control"],
+        },
+        {
+          name: "Cristiano Ronaldo",
+          nation: "Portugal",
+          pos: "ST / LW",
+          style: "결정력·집념·피지컬로 모든 걸 밀어붙이는 엔진형",
+          tags: ["Finisher", "Air Threat", "Mentality"],
+        },
+        {
+          name: "Kevin De Bruyne",
+          nation: "Belgium",
+          pos: "CM / AMF",
+          style: "시야로 먼저 도착하는 패스. 한 번 열면 끝까지 연다",
+          tags: ["Through Ball", "Vision", "Tempo"],
+        },
+        {
+          name: "Kylian Mbappé",
+          nation: "France",
+          pos: "ST / LW",
+          style: "순간가속으로 수비 라인을 찢고 들어가는 속도형",
+          tags: ["Pace", "Channel Run", "Clinical"],
+        },
+        {
+          name: "Erling Haaland",
+          nation: "Norway",
+          pos: "ST",
+          style: "박스 안에서 끝내는 ‘공장형 득점기’",
+          tags: ["Box Monster", "Strength", "One Touch"],
+        },
+        {
+          name: "Neymar",
+          nation: "Brazil",
+          pos: "LW / AMF",
+          style: "기술로 분위기 장악 + 쇼맨십 한 스푼",
+          tags: ["Skill Moves", "Flair", "Unpredictable"],
+        },
+        {
+          name: "Mohamed Salah",
+          nation: "Egypt",
+          pos: "RW / ST",
+          style: "역습에서 가장 무서운 컷인 피니셔",
+          tags: ["Cut Inside", "Counter", "Composure"],
+        },
+        {
+          name: "Son Heung-min",
+          nation: "Korea",
+          pos: "LW / ST",
+          style: "양발 결정력 + 공간 침투가 깔끔한 ‘효율 끝판왕’",
+          tags: ["Two-footed", "Finishing", "Runs"],
+        },
+        {
+          name: "Harry Kane",
+          nation: "England",
+          pos: "ST",
+          style: "득점도 하고 빌드업도 하는 만능 스트라이커",
+          tags: ["Playmaking 9", "Finishing", "Hold-up"],
+        },
+        {
+          name: "Robert Lewandowski",
+          nation: "Poland",
+          pos: "ST",
+          style: "기본기·포지셔닝·결정력 3박자 정석",
+          tags: ["Positioning", "Clinical", "Consistency"],
+        },
+        {
+          name: "Virgil van Dijk",
+          nation: "Netherlands",
+          pos: "CB",
+          style: "상대 공격을 ‘정리’하는 안정감의 상징",
+          tags: ["Aerial", "Calm", "Dominance"],
+        },
+        {
+          name: "Sergio Ramos",
+          nation: "Spain",
+          pos: "CB",
+          style: "결정적 순간에 나타나는 공격형 수비 리더",
+          tags: ["Leadership", "Big Game", "Aggressive"],
+        },
+        {
+          name: "Rúben Dias",
+          nation: "Portugal",
+          pos: "CB",
+          style: "라인을 잡고 팀을 지휘하는 조직형 센터백",
+          tags: ["Organizer", "Tackling", "Command"],
+        },
+        {
+          name: "Jude Bellingham",
+          nation: "England",
+          pos: "CM / AMF",
+          style: "박스 투 박스로 분위기 바꾸는 ‘새 에이스’ 타입",
+          tags: ["Box-to-Box", "Clutch", "Energy"],
+        },
+        {
+          name: "Rodri",
+          nation: "Spain",
+          pos: "DM",
+          style: "게임을 느리게/빠르게 조절하는 미드필드의 기준점",
+          tags: ["Control", "Shield", "Simple"],
+        },
+        {
+          name: "Luka Modrić",
+          nation: "Croatia",
+          pos: "CM",
+          style: "리듬과 방향을 바꾸는 마에스트로",
+          tags: ["Outside Foot", "Press Resist", "Maestro"],
+        },
+        {
+          name: "Toni Kroos",
+          nation: "Germany",
+          pos: "CM",
+          style: "정확도로 상대 체력을 갉아먹는 패스 머신",
+          tags: ["Accuracy", "Switch", "Metronome"],
+        },
+        {
+          name: "Pedri",
+          nation: "Spain",
+          pos: "CM / AMF",
+          style: "작은 터치로 큰 공간을 만드는 조용한 천재형",
+          tags: ["First Touch", "IQ", "Smooth"],
+        },
+        {
+          name: "Xavi",
+          nation: "Spain",
+          pos: "CM",
+          style: "한 번에 한 칸씩 ‘이기는 루트’로 끌고 가는 타입",
+          tags: ["Tiki-taka", "Control", "Angles"],
+        },
+        {
+          name: "Andrés Iniesta",
+          nation: "Spain",
+          pos: "CM / AMF",
+          style: "큰 경기에서 조용히 한 번에 끝내는 예술가",
+          tags: ["Big Moment", "Dribble", "Calm"],
+        },
+        {
+          name: "Zinedine Zidane",
+          nation: "France",
+          pos: "AMF",
+          style: "우아함으로 경기 난이도를 낮추는 전설형",
+          tags: ["Elegance", "Technique", "Aura"],
+        },
+        {
+          name: "Ronaldinho",
+          nation: "Brazil",
+          pos: "LW / AMF",
+          style: "사람을 웃기면서 이기는 마술사",
+          tags: ["Joy", "Flair", "Magic"],
+        },
+        {
+          name: "Ronaldo Nazário",
+          nation: "Brazil",
+          pos: "ST",
+          style: "첫 걸음에서 승부가 끝나는 폭발형 스트라이커",
+          tags: ["Burst", "Dribble", "Finisher"],
+        },
+        {
+          name: "Thierry Henry",
+          nation: "France",
+          pos: "ST / LW",
+          style: "미니멀 동작으로 최대 효율을 뽑는 클래식 킬러",
+          tags: ["Efficiency", "Cut", "Composure"],
+        },
+        {
+          name: "Didier Drogba",
+          nation: "Côte d'Ivoire",
+          pos: "ST",
+          style: "큰 경기에서 버티고 부수는 ‘보스몹’",
+          tags: ["Big Game", "Hold-up", "Power"],
+        },
+        {
+          name: "Andrea Pirlo",
+          nation: "Italy",
+          pos: "CM / DM",
+          style: "한 번의 패스로 세계관을 바꾸는 롱패스 장인",
+          tags: ["Long Pass", "Set Piece", "Calm"],
+        },
+        {
+          name: "Gianluigi Buffon",
+          nation: "Italy",
+          pos: "GK",
+          style: "팀 멘탈까지 막아주는 레전드 수문장",
+          tags: ["Reflex", "Leadership", "Longevity"],
+        },
+        {
+          name: "Manuel Neuer",
+          nation: "Germany",
+          pos: "GK",
+          style: "골키퍼인데 사실상 스위퍼. 라인을 지운다",
+          tags: ["Sweeper GK", "Bravery", "Play"],
+        },
+        {
+          name: "Iker Casillas",
+          nation: "Spain",
+          pos: "GK",
+          style: "반사신경으로 게임을 살리는 ‘순간의 영웅’",
+          tags: ["Reflex", "Clutch", "Shot Stop"],
+        },
+        {
+          name: "Marcelo",
+          nation: "Brazil",
+          pos: "LB",
+          style: "수비수인데 공격수처럼 논다. 측면의 예술",
+          tags: ["Overlap", "Skill", "Playmaker"],
+        },
+        {
+          name: "Dani Alves",
+          nation: "Brazil",
+          pos: "RB",
+          style: "경기를 넓히는 왕성한 활동량 + 크로스",
+          tags: ["Work Rate", "Cross", "Width"],
+        },
+        {
+          name: "Trent Alexander-Arnold",
+          nation: "England",
+          pos: "RB / CM",
+          style: "오른쪽에서 패스로 경기 설계하는 타입",
+          tags: ["Playmaking", "Cross", "Vision"],
+        },
+        {
+          name: "Achraf Hakimi",
+          nation: "Morocco",
+          pos: "RB / RWB",
+          style: "측면 가속으로 공간을 찢는 스프린터",
+          tags: ["Pace", "Overlap", "Direct"],
+        },
+        {
+          name: "N'Golo Kanté",
+          nation: "France",
+          pos: "DM",
+          style: "상대 공을 ‘없던 일’로 만드는 청소기",
+          tags: ["Ball Win", "Engine", "Humble"],
+        },
+        {
+          name: "Casemiro",
+          nation: "Brazil",
+          pos: "DM",
+          style: "경기 흐름 끊고 팀을 지키는 방패형",
+          tags: ["Shield", "Duels", "Grit"],
+        },
+        {
+          name: "Sadio Mané",
+          nation: "Senegal",
+          pos: "LW / ST",
+          style: "직선 침투 + 압박으로 경기 온도 올리는 타입",
+          tags: ["Pressing", "Direct", "Runs"],
+        },
+        {
+          name: "Vinícius Júnior",
+          nation: "Brazil",
+          pos: "LW",
+          style: "1대1에서 상대 멘탈을 녹이는 드리블러",
+          tags: ["1v1", "Flair", "Acceleration"],
+        },
+        {
+          name: "Bukayo Saka",
+          nation: "England",
+          pos: "RW",
+          style: "안정감+결정력으로 성장하는 ‘팀의 미래’",
+          tags: ["Consistency", "Composed", "Versatile"],
+        },
+        {
+          name: "Bernardo Silva",
+          nation: "Portugal",
+          pos: "AMF / RW",
+          style: "쉴 새 없이 돌면서 압박을 이기는 테크니션",
+          tags: ["Press Resist", "Dribble", "Work Rate"],
+        },
+        {
+          name: "Antoine Griezmann",
+          nation: "France",
+          pos: "SS / AMF",
+          style: "연결·압박·결정력 다 하는 똑똑한 플레이어",
+          tags: ["Link-up", "Smart Runs", "Clutch"],
+        },
+        {
+          name: "Paulo Dybala",
+          nation: "Argentina",
+          pos: "AMF / SS",
+          style: "왼발로 각을 만들어 ‘예쁘게’ 끝내는 타입",
+          tags: ["Left Foot", "Curve", "Technique"],
+        },
+        {
+          name: "Marco Reus",
+          nation: "Germany",
+          pos: "AMF / LW",
+          style: "부드러운 터치로 찬스 만드는 감성형",
+          tags: ["Smooth", "Finishing", "Movement"],
+        },
+        {
+          name: "Gareth Bale",
+          nation: "Wales",
+          pos: "RW / LW",
+          style: "스피드·파워·왼발 중거리로 한 방",
+          tags: ["Power", "Pace", "Big Shot"],
+        },
+        {
+          name: "Xabi Alonso",
+          nation: "Spain",
+          pos: "CM / DM",
+          style: "경기 전체를 위에서 내려다보는 배급형",
+          tags: ["Distribution", "Calm", "Switch"],
+        },
+        {
+          name: "Francesco Totti",
+          nation: "Italy",
+          pos: "SS / AMF",
+          style: "한 팀에서 왕처럼 군림하는 플레이메이커",
+          tags: ["Loyalty", "Vision", "Finishing"],
+        },
+        {
+          name: "Steven Gerrard",
+          nation: "England",
+          pos: "CM",
+          style: "중거리 한 방 + 리더십으로 팀 끌고 가는 타입",
+          tags: ["Long Shot", "Leader", "Drive"],
+        },
+        {
+          name: "Frank Lampard",
+          nation: "England",
+          pos: "CM",
+          style: "박스 침투로 득점 생산하는 미드필더",
+          tags: ["Late Runs", "Goals", "Timing"],
+        },
+        {
+          name: "Paul Scholes",
+          nation: "England",
+          pos: "CM",
+          style: "짧고 빠르게, 그리고 롱패스로 끝",
+          tags: ["Passing", "Tempo", "Range"],
+        },
+        {
+          name: "David Beckham",
+          nation: "England",
+          pos: "RM / CM",
+          style: "프리킥·크로스로 각을 새기는 ‘정밀기계’",
+          tags: ["Set Piece", "Cross", "Precision"],
+        },
+      ];
+
+      const FOOT = [
+        "오른발",
+        "왼발",
+        "양발(사기)",
+        "오른발(왼발도 됨)",
+        "왼발(오른발도 됨)",
+      ];
+      const WEAPONS = [
+        "중거리 한 방",
+        "박스 안 원터치",
+        "순간 가속",
+        "환상 패스",
+        "세트피스",
+        "공중볼",
+        "1대1 드리블",
+        "압박 탈출",
+        "수비 차단",
+        "클러치 멘탈",
+      ];
+      const ONELINES = [
+        "이 조합은… 감독만 잘 만나면 바로 월드클래스입니다.",
+        "재능은 확실한데, 자꾸 하이라이트가 나옵니다. (좋은 뜻)",
+        "팀플도 되는데 솔로플도 됩니다. 위험하게 완성형.",
+        "경기 흐름을 바꾸는 타입이라 주변이 ‘왜 저래?’ 하다 이깁니다.",
+        "기본기가 좋아서 오래갑니다. 꾸준히 무서운 조합.",
+      ];
+      const DNA_TEMPLATES = [
+        "A의 {aKey} + B의 {bKey}가 섞여서, {name}처럼 ‘{hook}’이(가) 강하게 나옵니다. 한 번 꽂히면 끝까지 갑니다.",
+        "둘의 조합은 ‘{hook}’이 핵심 유전자입니다. 그래서 {name} 타입: 상대가 대비를 해도 이상하게 뚫립니다.",
+        "{name} DNA는 {hook}에 투자합니다. A의 {aKey}가 기반을 깔고, B의 {bKey}가 마침표를 찍는 구조예요.",
+        "이 조합은 안정감 위에 임팩트를 얹습니다. {name}처럼 {hook}을(를) 한 번 터뜨리면 분위기가 바뀝니다.",
+      ];
+      const KEYWORDS_A = [
+        "집요함",
+        "꾸준함",
+        "승부욕",
+        "상상력",
+        "차분함",
+        "폭발력",
+        "정교함",
+        "책임감",
+        "계획성",
+        "감각",
+      ];
+      const KEYWORDS_B = [
+        "센스",
+        "용기",
+        "여유",
+        "도전성",
+        "유쾌함",
+        "자신감",
+        "몰입",
+        "배짱",
+        "유연함",
+        "리듬",
+      ];
+
+      // ---------- UI bindings ----------
+      const $ = (id) => document.getElementById(id);
+      const birthA = $("birthA");
+      const birthB = $("birthB");
+      const relation = $("relation");
+      const goBtn = $("goBtn");
+      const resultWrap = $("resultWrap");
+      const hero = $("hero");
+
+      const resultTitle = $("resultTitle");
+      const resultSub = $("resultSub");
+      const chem = $("chem");
+      const pos = $("pos");
+      const nation = $("nation");
+      const foot = $("foot");
+      const weapon = $("weapon");
+      const oneLine = $("oneLine");
+      const style = $("style");
+      const dna = $("dna");
+      const tags = $("tags");
+      const playerImg = $("playerImg");
+      const toast = $("toast");
+      const copyBtn = $("copyBtn");
+      const shareBtn = $("shareBtn");
+      const resultEyebrow = $("resultEyebrow");
+
+      // Relationship buttons
+      document.querySelectorAll(".relBtn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".relBtn")
+            .forEach((b) =>
+              b.classList.remove("ring-2", "ring-emerald-300/60")
+            );
+          btn.classList.add("ring-2", "ring-emerald-300/60");
+          relation.value = btn.dataset.rel || "그냥 궁금";
+        });
+      });
+      // default select
+      document
+        .querySelector('.relBtn[data-rel="그냥 궁금"]')
+        ?.classList.add("ring-2", "ring-emerald-300/60");
+
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.remove("hidden");
+        setTimeout(() => toast.classList.add("hidden"), 1800);
+      }
+
+      function toYMD(d) {
+        return (d || "").trim();
+      }
+
+      function buildSeed(a, b, rel) {
+        const str = `${a}|${b}|${rel}|v1`;
+        const seedFn = xmur3(str);
+        return seedFn(); // uint32
+      }
+
+      function updateURL(a, b, rel) {
+        const url = new URL(location.href);
+        url.searchParams.set("a", a);
+        url.searchParams.set("b", b);
+        url.searchParams.set("r", rel);
+        history.replaceState(null, "", url.toString());
+      }
+
+      function makeShareText(res) {
+        const line1 = `⚽ 우리 둘의 조합이 낳을 축구선수는?`;
+        const line2 = `결과: ${res.player.name} 타입`;
+        const line3 = `포지션: ${res.player.pos} · 케미: ${res.chem}/100`;
+        const line4 = `한 줄: ${res.oneLine}`;
+        return `${line1}\n${line2}\n${line3}\n${line4}\n\n👉 ${location.href}`;
+      }
+
+      function renderResult(res) {
+        hero.classList.add("hidden");
+        resultWrap.classList.remove("hidden");
+        resultWrap.classList.add("fade-in");
+
+        resultEyebrow.textContent = `Your Result · ${res.rel}`;
+        resultTitle.textContent = `${res.player.name} 타입`;
+        resultSub.textContent = `${res.player.nation} · ${res.player.pos} · “${res.hook}”`;
+
+        chem.textContent = `${res.chem}/100`;
+        pos.textContent = res.player.pos;
+        nation.textContent = res.player.nation;
+        foot.textContent = res.foot;
+        weapon.textContent = res.weapon;
+
+        oneLine.textContent = res.oneLine;
+        style.textContent = res.player.style;
+
+        tags.innerHTML = "";
+        res.tags.forEach((t) => {
+          const el = document.createElement("span");
+          el.className =
+            "px-3 py-1 rounded-full bg-white/10 border border-white/10 text-sm";
+          el.textContent = t;
+          tags.appendChild(el);
+        });
+
+        dna.textContent = res.dna;
+
+        // ✅ 실제 동작 더미 이미지 (텍스트 없음)
+        // picsum seeded image for consistency
+        playerImg.src = `https://picsum.photos/seed/${encodeURIComponent(
+          res.imgSeed
+        )}/900/675`;
+        playerImg.alt = `${res.player.name} Type`;
+
+        // scroll into view
+        resultWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function generate() {
+        const a = toYMD(birthA.value);
+        const b = toYMD(birthB.value);
+        const rel = relation.value || "그냥 궁금";
+
+        if (!a || !b) {
+          showToast("생일 2개를 모두 입력해줘!");
+          return;
+        }
+
+        updateURL(a, b, rel);
+
+        const seed = buildSeed(a, b, rel);
+        const rng = mulberry32(seed);
+
+        const player = PLAYERS[Math.floor(rng() * PLAYERS.length)];
+        const chemScore = Math.floor(70 + rng() * 31); // 70~100
+        const hook = pick(rng, [
+          "결정력",
+          "시야",
+          "드리블",
+          "가속",
+          "멘탈",
+          "패스",
+          "중거리",
+          "압박 탈출",
+          "공간 침투",
+          "세트피스",
+        ]);
+        const one = pick(rng, ONELINES);
+        const f = pick(rng, FOOT);
+        const w = pick(rng, WEAPONS);
+
+        const aKey = pick(rng, KEYWORDS_A);
+        const bKey = pick(rng, KEYWORDS_B);
+        const dnaTpl = pick(rng, DNA_TEMPLATES);
+        const dnaText = dnaTpl
+          .replaceAll("{name}", player.name)
+          .replaceAll("{hook}", hook)
+          .replaceAll("{aKey}", aKey)
+          .replaceAll("{bKey}", bKey);
+
+        const extraTags = pickN(
+          rng,
+          [
+            "Clutch",
+            "Calm",
+            "Chaos",
+            "High IQ",
+            "Big Game",
+            "Work Rate",
+            "Ice Cold",
+            "Street Ball",
+            "Machine",
+            "Artist",
+            "Captain",
+            "Counter",
+          ],
+          2
+        );
+
+        const res = {
+          a,
+          b,
+          rel,
+          player,
+          chem: chemScore,
+          hook,
+          oneLine: one,
+          foot: f,
+          weapon: w,
+          tags: [...(player.tags || []).slice(0, 2), ...extraTags],
+          dna: dnaText,
+          imgSeed: `football-${player.name
+            .replace(/\s+/g, "-")
+            .toLowerCase()}-${seed}`,
+        };
+
+        renderResult(res);
+
+        // bind copy/share with this result
+        const shareText = makeShareText(res);
+
+        copyBtn.onclick = async () => {
+          try {
+            await navigator.clipboard.writeText(shareText);
+            showToast("복사 완료! 톡/스토리에 붙여넣기 ㄱㄱ");
+          } catch {
+            // fallback
+            const ta = document.createElement("textarea");
+            ta.value = shareText;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            ta.remove();
+            showToast("복사 완료!");
+          }
+        };
+
+        shareBtn.onclick = async () => {
+          const url = location.href;
+          if (navigator.share) {
+            try {
+              await navigator.share({
+                title: "우리 둘의 조합이 낳을 축구선수는?",
+                text: shareText,
+                url,
+              });
+            } catch {
+              // user canceled
+            }
+          } else {
+            try {
+              await navigator.clipboard.writeText(url);
+              showToast("공유 링크 복사 완료!");
+            } catch {
+              showToast("브라우저가 공유를 지원하지 않아요 😭");
+            }
+          }
+        };
+      }
+
+      goBtn.addEventListener("click", generate);
+
+      // Enter-to-run
+      [birthA, birthB].forEach((inp) =>
+        inp.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") generate();
+        })
+      );
+
+      // Auto-run from query params
+      (function initFromURL() {
+        $("y").textContent = new Date().getFullYear();
+        const url = new URL(location.href);
+        const a = url.searchParams.get("a");
+        const b = url.searchParams.get("b");
+        const r = url.searchParams.get("r");
+        if (a) birthA.value = a;
+        if (b) birthB.value = b;
+        if (r) relation.value = r;
+
+        // highlight relation if matches
+        if (r) {
+          document
+            .querySelectorAll(".relBtn")
+            .forEach((b) =>
+              b.classList.remove("ring-2", "ring-emerald-300/60")
+            );
+          const btn = document.querySelector(
+            `.relBtn[data-rel="${CSS.escape(r)}"]`
+          );
+          btn?.classList.add("ring-2", "ring-emerald-300/60");
+        }
+
+        if (a && b) {
+          // auto-generate if shared link
+          setTimeout(generate, 120);
+        }
+      })();
+    </script>
+  </body>
+</html>
+```
