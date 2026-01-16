@@ -122,8 +122,6 @@
         }
       }
     </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1204894220949193"
-     crossorigin="anonymous"></script>
     <!-- responsive-base -->
     <style>
       /* responsive-base */
@@ -149,18 +147,6 @@
         word-break: break-word;
       }
     </style>
-  <style>
-    .adsense-block {
-      margin: 16px 0;
-      display: flex;
-      justify-content: center;
-    }
-    .adsbygoogle {
-      display: block;
-      margin: 16px auto;
-        text-align: center;
-}
-  </style>
   <style>
     .lang-switch {
       position: fixed;
@@ -201,7 +187,7 @@
   </style>
 </head>
 
-  <body class="min-h-screen text-slate-100 w-full">
+  <body class="min-h-screen text-slate-100 w-full flex flex-col items-center justify-start">
     <div class="lang-switch" role="tablist" aria-label="Language switcher">
       <button type="button" data-lang="ko" class="active">KR</button>
       <button type="button" data-lang="en">EN</button>
@@ -1386,11 +1372,11 @@
         style.textContent = styleTranslations[res.player.name] || res.player.styleKo || res.player.styleEn || res.player.style;
 
         tags.innerHTML = "";
-        res.tags.forEach((t) => {
+        res.tags.forEach((tag) => {
           const el = document.createElement("span");
           el.className =
             "px-3 py-1 rounded-full bg-white/10 border border-white/10 text-sm";
-          el.textContent = t;
+          el.textContent = tag;
           tags.appendChild(el);
         });
 
@@ -1482,7 +1468,6 @@
         // bind copy/share with this result
         const shareText = makeShareText(res);
 
-        const t = window.t || ((key, vars = {}) => key);
         copyBtn.onclick = async () => {
           try {
             await navigator.clipboard.writeText(shareText);
@@ -1499,7 +1484,6 @@
           }
         };
 
-        const t = window.t || ((key, vars = {}) => key);
         shareBtn.onclick = async () => {
           const url = location.href;
           if (navigator.share) {
@@ -1562,16 +1546,5 @@
         }
       })();
     </script>
-  
-<ins class="adsbygoogle"
-     style="display:block; text-align:center"
-     data-ad-client="ca-pub-1204894220949193"
-     data-ad-slot="5145068706"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-    
 </body>
 </html>
