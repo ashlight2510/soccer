@@ -246,6 +246,8 @@
               <input
                 id="birthA"
                 type="date"
+                min="1900-01-01"
+                max="2025-12-31"
                 class="w-full rounded-2xl px-4 py-3.5 bg-slate-950/60 border border-slate-700/40 focus:outline-none focus:ring-2 focus:ring-sky-400/60 focus:border-sky-400/60 transition"
               />
             </label>
@@ -255,6 +257,8 @@
               <input
                 id="birthB"
                 type="date"
+                min="1900-01-01"
+                max="2025-12-31"
                 class="w-full rounded-2xl px-4 py-3.5 bg-slate-950/60 border border-slate-700/40 focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:border-emerald-400/60 transition"
               />
             </label>
@@ -319,7 +323,6 @@
                       class="text-xs uppercase tracking-widest text-slate-300/70"
                       data-i18n="resultEyebrow"
                     >
-                      Your Result
                     </p>
                     <h2
                       id="resultTitle"
@@ -493,6 +496,7 @@
       const translations = {
         ko: {
           metaTitle: "우리 둘의 조합이 낳을 축구선수는?",
+          subtitle: "Football DNA Simulator",
           titlePart1: "우리 둘의 조합이 낳을",
           titlePart2: "축구선수",
           titlePart3: "는?",
@@ -533,6 +537,7 @@
         },
         en: {
           metaTitle: "What Football Player Would Our Combination Create?",
+          subtitle: "Football DNA Simulator",
           titlePart1: "What Football Player",
           titlePart2: "Would Our Combination",
           titlePart3: "Create?",
@@ -1370,12 +1375,21 @@
         return seedFn(); // uint32
       }
 
-      function updateURL(a, b, rel) {
+      function updateURL(a, b, rel, showResult = true) {
         const url = new URL(location.href);
         url.searchParams.set("a", a);
         url.searchParams.set("b", b);
         url.searchParams.set("r", rel);
-        history.replaceState(null, "", url.toString());
+        if (showResult) {
+          url.searchParams.set("result", "true");
+        } else {
+          url.searchParams.delete("result");
+        }
+        if (showResult) {
+          window.location.href = url.toString();
+        } else {
+          history.replaceState(null, "", url.toString());
+        }
       }
 
       function makeShareText(res) {
@@ -1392,6 +1406,20 @@
         window.lastResult = res;
         resultWrap.classList.remove("hidden");
         resultWrap.classList.add("fade-in");
+        
+        // 결과 페이지 모드: 입력 섹션 숨기기
+        const url = new URL(location.href);
+        if (url.searchParams.get("result") === "true") {
+          const inputCard = document.querySelector('.glass.rounded-3xl.p-6');
+          if (inputCard && inputCard.closest('section')) {
+            inputCard.closest('section').style.display = 'none';
+          }
+          // 헤더도 간소화
+          const header = document.querySelector('header');
+          if (header) {
+            header.style.display = 'none';
+          }
+        }
 
         // Translate relation
         const relMap = {
@@ -1445,7 +1473,7 @@
           return;
         }
 
-        updateURL(a, b, rel);
+        updateURL(a, b, rel, true);
 
         const seed = buildSeed(a, b, rel);
         const rng = mulberry32(seed);
@@ -1568,6 +1596,8 @@
         const a = url.searchParams.get("a");
         const b = url.searchParams.get("b");
         const r = url.searchParams.get("r");
+        const showResult = url.searchParams.get("result") === "true";
+        
         if (a) birthA.value = a;
         if (b) birthB.value = b;
         if (r) relation.value = r;
@@ -1587,7 +1617,13 @@
 
         if (a && b) {
           // auto-generate if shared link
-          setTimeout(generate, 120);
+          setTimeout(() => {
+            generate();
+            // 결과 페이지 모드에서는 URL 업데이트 시 result 파라미터 유지
+            if (showResult) {
+              updateURL(a, b, r || "그냥 궁금", true);
+            }
+          }, 120);
         }
       })();
     </script>
