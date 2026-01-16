@@ -70,6 +70,10 @@
             transparent 60%
           ),
           linear-gradient(180deg, var(--bg0), var(--bg1));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
       }
       .glass {
         background: rgba(15, 23, 42, 0.62);
@@ -197,11 +201,13 @@
   </style>
 </head>
 
-  <body class="min-h-screen text-slate-100">
+  <body class="min-h-screen text-slate-100 w-full">
     <div class="lang-switch" role="tablist" aria-label="Language switcher">
       <button type="button" data-lang="ko" class="active">KR</button>
       <button type="button" data-lang="en">EN</button>
-    </div><header class="max-w-5xl mx-auto px-4 pt-8 pb-4">
+    </div>
+    <div class="w-full max-w-5xl mx-auto px-4">
+    <header class="pt-8 pb-4">
       <div class="flex items-start justify-between gap-3">
         <div>
           <p class="text-xs uppercase tracking-widest text-slate-300/70">
@@ -229,7 +235,7 @@
       </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-4 pb-10">
+    <main class="pb-10">
       <section class="grid grid-cols-1 lg:grid-cols-5 gap-5">
         <!-- Input Card -->
         <div class="lg:col-span-2 glass rounded-3xl p-5 sm:p-6">
@@ -447,6 +453,7 @@
         © <span id="y"></span> FunnyFunny · Made for laughs & shares.
       </footer>
     </main>
+    </div>
 
     <script>
       // =========================
@@ -604,9 +611,22 @@
           url.searchParams.set("lang", nextLang);
           window.history.replaceState({}, "", url);
         }
-        // Re-render result if exists
+        // Re-generate with same inputs if result exists
         if (window.lastResult) {
-          renderResult(window.lastResult);
+          const a = window.lastResult.a;
+          const b = window.lastResult.b;
+          const rel = window.lastResult.rel;
+          if (a && b) {
+            const birthA = $("birthA");
+            const birthB = $("birthB");
+            const relation = $("relation");
+            if (birthA && birthB && relation) {
+              birthA.value = a;
+              birthB.value = b;
+              relation.value = rel;
+              setTimeout(() => generate(), 100);
+            }
+          }
         }
       }
 
@@ -662,6 +682,213 @@
         return out;
       }
 
+      // ---------- Translation data ----------
+      function getPlayerStyleTranslations() {
+        const isKo = currentLang === "ko";
+        return {
+          "Lionel Messi": isKo ? "초근접 드리블 + 템포 조절로 경기 맥을 뽑아먹는 타입" : "Ultra-close dribbling + tempo control type that dominates the game",
+          "Cristiano Ronaldo": isKo ? "결정력·집념·피지컬로 모든 걸 밀어붙이는 엔진형" : "Engine type that pushes everything with finishing, persistence, and physicality",
+          "Kevin De Bruyne": isKo ? "시야로 먼저 도착하는 패스. 한 번 열면 끝까지 연다" : "Passes that arrive first with vision. Once open, keeps going",
+          "Kylian Mbappé": isKo ? "순간가속으로 수비 라인을 찢고 들어가는 속도형" : "Speed type that tears through defensive lines with instant acceleration",
+          "Erling Haaland": isKo ? "박스 안에서 끝내는 '공장형 득점기'" : "Goal-scoring factory that finishes inside the box",
+          "Neymar": isKo ? "기술로 분위기 장악 + 쇼맨십 한 스푼" : "Atmosphere control with technique + a spoonful of showmanship",
+          "Mohamed Salah": isKo ? "역습에서 가장 무서운 컷인 피니셔" : "The scariest cut-in finisher in counter-attacks",
+          "Son Heung-min": isKo ? "양발 결정력 + 공간 침투가 깔끔한 '효율 끝판왕'" : "Two-footed finishing + clean space penetration - the efficiency king",
+          "Harry Kane": isKo ? "득점도 하고 빌드업도 하는 만능 스트라이커" : "All-round striker who scores and builds up",
+          "Robert Lewandowski": isKo ? "기본기·포지셔닝·결정력 3박자 정석" : "Textbook trio: fundamentals, positioning, finishing",
+          "Virgil van Dijk": isKo ? "상대 공격을 '정리'하는 안정감의 상징" : "Symbol of stability who 'organizes' opponent attacks",
+          "Sergio Ramos": isKo ? "결정적 순간에 나타나는 공격형 수비 리더" : "Attacking defensive leader who appears at crucial moments",
+          "Rúben Dias": isKo ? "라인을 잡고 팀을 지휘하는 조직형 센터백" : "Organizing center-back who holds the line and commands the team",
+          "Jude Bellingham": isKo ? "박스 투 박스로 분위기 바꾸는 '새 에이스' 타입" : "Box-to-box type who changes the atmosphere - the 'new ace'",
+          "Rodri": isKo ? "게임을 느리게/빠르게 조절하는 미드필드의 기준점" : "Midfield reference point who controls the game's tempo",
+          "Luka Modrić": isKo ? "리듬과 방향을 바꾸는 마에스트로" : "Maestro who changes rhythm and direction",
+          "Toni Kroos": isKo ? "정확도로 상대 체력을 갉아먹는 패스 머신" : "Pass machine that drains opponent stamina with accuracy",
+          "Pedri": isKo ? "작은 터치로 큰 공간을 만드는 조용한 천재형" : "Quiet genius type who creates big spaces with small touches",
+          "Xavi": isKo ? "한 번에 한 칸씩 '이기는 루트'로 끌고 가는 타입" : "Type who leads step by step on the 'winning path'",
+          "Andrés Iniesta": isKo ? "큰 경기에서 조용히 한 번에 끝내는 예술가" : "Artist who quietly finishes everything in big games",
+          "Zinedine Zidane": isKo ? "우아함으로 경기 난이도를 낮추는 전설형" : "Legendary type who lowers game difficulty with elegance",
+          "Ronaldinho": isKo ? "사람을 웃기면서 이기는 마술사" : "Magician who wins while making people laugh",
+          "Ronaldo Nazário": isKo ? "첫 걸음에서 승부가 끝나는 폭발형 스트라이커" : "Explosive striker who decides the match from the first step",
+          "Thierry Henry": isKo ? "미니멀 동작으로 최대 효율을 뽑는 클래식 킬러" : "Classic killer who maximizes efficiency with minimal movement",
+          "Didier Drogba": isKo ? "큰 경기에서 버티고 부수는 '보스몹'" : "'Boss monster' who endures and breaks in big games",
+          "Andrea Pirlo": isKo ? "한 번의 패스로 세계관을 바꾸는 롱패스 장인" : "Long pass craftsman who changes perspectives with one pass",
+          "Gianluigi Buffon": isKo ? "팀 멘탈까지 막아주는 레전드 수문장" : "Legendary goalkeeper who protects even team morale",
+          "Manuel Neuer": isKo ? "골키퍼인데 사실상 스위퍼. 라인을 지운다" : "Goalkeeper who's actually a sweeper. Erases the line",
+          "Iker Casillas": isKo ? "반사신경으로 게임을 살리는 '순간의 영웅'" : "'Moment hero' who saves the game with reflexes",
+          "Marcelo": isKo ? "수비수인데 공격수처럼 논다. 측면의 예술" : "Defender who plays like a forward. Side artistry",
+          "Dani Alves": isKo ? "경기를 넓히는 왕성한 활동량 + 크로스" : "Vigorous work rate that widens the game + crosses",
+          "Trent Alexander-Arnold": isKo ? "오른쪽에서 패스로 경기 설계하는 타입" : "Type who designs the game with passes from the right",
+          "Achraf Hakimi": isKo ? "측면 가속으로 공간을 찢는 스프린터" : "Sprinter who tears space with flank acceleration",
+          "N'Golo Kanté": isKo ? "상대 공을 '없던 일'로 만드는 청소기" : "Vacuum cleaner who makes opponent balls 'never existed'",
+          "Casemiro": isKo ? "경기 흐름 끊고 팀을 지키는 방패형" : "Shield type who breaks game flow and protects the team",
+          "Sadio Mané": isKo ? "직선 침투 + 압박으로 경기 온도 올리는 타입" : "Type who raises game temperature with direct penetration + pressing",
+          "Vinícius Júnior": isKo ? "1대1에서 상대 멘탈을 녹이는 드리블러" : "Dribbler who melts opponent mentality in 1v1",
+          "Bukayo Saka": isKo ? "안정감+결정력으로 성장하는 '팀의 미래'" : "'Team's future' growing with stability + finishing",
+          "Bernardo Silva": isKo ? "쉴 새 없이 돌면서 압박을 이기는 테크니션" : "Technician who beats pressing by constantly moving",
+          "Antoine Griezmann": isKo ? "연결·압박·결정력 다 하는 똑똑한 플레이어" : "Smart player who links, presses, and finishes",
+          "Paulo Dybala": isKo ? "왼발로 각을 만들어 '예쁘게' 끝내는 타입" : "Type who creates angles with left foot and finishes 'beautifully'",
+          "Marco Reus": isKo ? "부드러운 터치로 찬스 만드는 감성형" : "Emotional type who creates chances with soft touches",
+          "Gareth Bale": isKo ? "스피드·파워·왼발 중거리로 한 방" : "One shot with speed, power, and left-footed long range",
+          "Xabi Alonso": isKo ? "경기 전체를 위에서 내려다보는 배급형" : "Distribution type who sees the entire game from above",
+          "Francesco Totti": isKo ? "한 팀에서 왕처럼 군림하는 플레이메이커" : "Playmaker who reigns like a king in one team",
+          "Steven Gerrard": isKo ? "중거리 한 방 + 리더십으로 팀 끌고 가는 타입" : "Type who leads the team with long-range shots + leadership",
+          "Frank Lampard": isKo ? "박스 침투로 득점 생산하는 미드필더" : "Midfielder who produces goals with box penetration",
+          "Paul Scholes": isKo ? "짧고 빠르게, 그리고 롱패스로 끝" : "Short and fast, then finished with long passes",
+          "David Beckham": isKo ? "프리킥·크로스로 각을 새기는 '정밀기계'" : "'Precision machine' who carves angles with free kicks and crosses",
+        };
+      }
+
+      function getFootTranslations() {
+        const isKo = currentLang === "ko";
+        return isKo ? [
+          "오른발",
+          "왼발",
+          "양발(사기)",
+          "오른발(왼발도 됨)",
+          "왼발(오른발도 됨)",
+        ] : [
+          "Right foot",
+          "Left foot",
+          "Both feet (OP)",
+          "Right foot (left works too)",
+          "Left foot (right works too)",
+        ];
+      }
+
+      function getWeaponsTranslations() {
+        const isKo = currentLang === "ko";
+        return isKo ? [
+          "중거리 한 방",
+          "박스 안 원터치",
+          "순간 가속",
+          "환상 패스",
+          "세트피스",
+          "공중볼",
+          "1대1 드리블",
+          "압박 탈출",
+          "수비 차단",
+          "클러치 멘탈",
+        ] : [
+          "Long-range shot",
+          "One-touch in box",
+          "Instant acceleration",
+          "Fantasy pass",
+          "Set pieces",
+          "Aerial balls",
+          "1v1 dribble",
+          "Press escape",
+          "Defensive block",
+          "Clutch mentality",
+        ];
+      }
+
+      function getOnelinesTranslations() {
+        const isKo = currentLang === "ko";
+        return isKo ? [
+          "이 조합은… 감독만 잘 만나면 바로 월드클래스입니다.",
+          "재능은 확실한데, 자꾸 하이라이트가 나옵니다. (좋은 뜻)",
+          "팀플도 되는데 솔로플도 됩니다. 위험하게 완성형.",
+          "경기 흐름을 바꾸는 타입이라 주변이 '왜 저래?' 하다 이깁니다.",
+          "기본기가 좋아서 오래갑니다. 꾸준히 무서운 조합.",
+        ] : [
+          "This combo... just meet the right coach and it's world-class.",
+          "Talent is clear, highlights keep coming. (Good meaning)",
+          "Works in team play and solo play. Dangerously complete.",
+          "A game-changing type, so opponents ask 'why is he like that?' and then lose.",
+          "Solid fundamentals last long. Consistently scary combo.",
+        ];
+      }
+
+      function getDnaTemplatesTranslations() {
+        const isKo = currentLang === "ko";
+        return isKo ? [
+          "A의 {aKey} + B의 {bKey}가 섞여서, {name}처럼 '{hook}'이(가) 강하게 나옵니다. 한 번 꽂히면 끝까지 갑니다.",
+          "둘의 조합은 '{hook}'이 핵심 유전자입니다. 그래서 {name} 타입: 상대가 대비를 해도 이상하게 뚫립니다.",
+          "{name} DNA는 {hook}에 투자합니다. A의 {aKey}가 기반을 깔고, B의 {bKey}가 마침표를 찍는 구조예요.",
+          "이 조합은 안정감 위에 임팩트를 얹습니다. {name}처럼 {hook}을(를) 한 번 터뜨리면 분위기가 바뀝니다.",
+        ] : [
+          "A's {aKey} + B's {bKey} mix together, so {name}'s '{hook}' comes out strong. Once locked in, goes all the way.",
+          "The combo's core gene is '{hook}'. That's why {name} type: strangely breaks through even when opponents prepare.",
+          "{name} DNA invests in {hook}. A's {aKey} lays the foundation, B's {bKey} adds the final touch.",
+          "This combo layers impact on stability. Like {name}, once {hook} explodes, the atmosphere changes.",
+        ];
+      }
+
+      function getKeywordsTranslations() {
+        const isKo = currentLang === "ko";
+        return {
+          a: isKo ? [
+            "집요함",
+            "꾸준함",
+            "승부욕",
+            "상상력",
+            "차분함",
+            "폭발력",
+            "정교함",
+            "책임감",
+            "계획성",
+            "감각",
+          ] : [
+            "Tenacity",
+            "Consistency",
+            "Competitiveness",
+            "Imagination",
+            "Calmness",
+            "Explosiveness",
+            "Precision",
+            "Responsibility",
+            "Planning",
+            "Sense",
+          ],
+          b: isKo ? [
+            "센스",
+            "용기",
+            "여유",
+            "도전성",
+            "유쾌함",
+            "자신감",
+            "몰입",
+            "배짱",
+            "유연함",
+            "리듬",
+          ] : [
+            "Sense",
+            "Courage",
+            "Ease",
+            "Challenge",
+            "Cheerfulness",
+            "Confidence",
+            "Immersion",
+            "Guts",
+            "Flexibility",
+            "Rhythm",
+          ],
+          hook: isKo ? [
+            "결정력",
+            "시야",
+            "드리블",
+            "가속",
+            "멘탈",
+            "패스",
+            "중거리",
+            "압박 탈출",
+            "공간 침투",
+            "세트피스",
+          ] : [
+            "Finishing",
+            "Vision",
+            "Dribble",
+            "Acceleration",
+            "Mentality",
+            "Pass",
+            "Long range",
+            "Press escape",
+            "Space penetration",
+            "Set pieces",
+          ],
+        };
+      }
+
       // ---------- Player Dataset (lightweight, no DB) ----------
       // Note: For fun only. Names are used as "types".
       const PLAYERS = [
@@ -669,7 +896,8 @@
           name: "Lionel Messi",
           nation: "Argentina",
           pos: "AMF / RW",
-          style: "초근접 드리블 + 템포 조절로 경기 맥을 뽑아먹는 타입",
+          styleKo: "초근접 드리블 + 템포 조절로 경기 맥을 뽑아먹는 타입",
+          styleEn: "Ultra-close dribbling + tempo control type that dominates the game",
           tags: ["GOAT Aura", "Tight Dribble", "Game Control"],
         },
         {
@@ -1010,62 +1238,6 @@
         },
       ];
 
-      const FOOT = [
-        "오른발",
-        "왼발",
-        "양발(사기)",
-        "오른발(왼발도 됨)",
-        "왼발(오른발도 됨)",
-      ];
-      const WEAPONS = [
-        "중거리 한 방",
-        "박스 안 원터치",
-        "순간 가속",
-        "환상 패스",
-        "세트피스",
-        "공중볼",
-        "1대1 드리블",
-        "압박 탈출",
-        "수비 차단",
-        "클러치 멘탈",
-      ];
-      const ONELINES = [
-        "이 조합은… 감독만 잘 만나면 바로 월드클래스입니다.",
-        "재능은 확실한데, 자꾸 하이라이트가 나옵니다. (좋은 뜻)",
-        "팀플도 되는데 솔로플도 됩니다. 위험하게 완성형.",
-        "경기 흐름을 바꾸는 타입이라 주변이 ‘왜 저래?’ 하다 이깁니다.",
-        "기본기가 좋아서 오래갑니다. 꾸준히 무서운 조합.",
-      ];
-      const DNA_TEMPLATES = [
-        "A의 {aKey} + B의 {bKey}가 섞여서, {name}처럼 ‘{hook}’이(가) 강하게 나옵니다. 한 번 꽂히면 끝까지 갑니다.",
-        "둘의 조합은 ‘{hook}’이 핵심 유전자입니다. 그래서 {name} 타입: 상대가 대비를 해도 이상하게 뚫립니다.",
-        "{name} DNA는 {hook}에 투자합니다. A의 {aKey}가 기반을 깔고, B의 {bKey}가 마침표를 찍는 구조예요.",
-        "이 조합은 안정감 위에 임팩트를 얹습니다. {name}처럼 {hook}을(를) 한 번 터뜨리면 분위기가 바뀝니다.",
-      ];
-      const KEYWORDS_A = [
-        "집요함",
-        "꾸준함",
-        "승부욕",
-        "상상력",
-        "차분함",
-        "폭발력",
-        "정교함",
-        "책임감",
-        "계획성",
-        "감각",
-      ];
-      const KEYWORDS_B = [
-        "센스",
-        "용기",
-        "여유",
-        "도전성",
-        "유쾌함",
-        "자신감",
-        "몰입",
-        "배짱",
-        "유연함",
-        "리듬",
-      ];
 
       // ---------- Pixabay API ----------
       const PIXABAY_KEY = "53710884-8cf25255c451e1da9731736f6";
@@ -1210,7 +1382,8 @@
         weapon.textContent = res.weapon;
 
         oneLine.textContent = res.oneLine;
-        style.textContent = res.player.style;
+        const styleTranslations = getPlayerStyleTranslations();
+        style.textContent = styleTranslations[res.player.name] || res.player.styleKo || res.player.styleEn || res.player.style;
 
         tags.innerHTML = "";
         res.tags.forEach((t) => {
@@ -1248,25 +1421,20 @@
 
         const player = PLAYERS[Math.floor(rng() * PLAYERS.length)];
         const chemScore = Math.floor(70 + rng() * 31); // 70~100
-        const hook = pick(rng, [
-          "결정력",
-          "시야",
-          "드리블",
-          "가속",
-          "멘탈",
-          "패스",
-          "중거리",
-          "압박 탈출",
-          "공간 침투",
-          "세트피스",
-        ]);
-        const one = pick(rng, ONELINES);
-        const f = pick(rng, FOOT);
-        const w = pick(rng, WEAPONS);
+        const hooks = getKeywordsTranslations().hook;
+        const hook = pick(rng, hooks);
+        const onelines = getOnelinesTranslations();
+        const one = pick(rng, onelines);
+        const foots = getFootTranslations();
+        const f = pick(rng, foots);
+        const weapons = getWeaponsTranslations();
+        const w = pick(rng, weapons);
 
-        const aKey = pick(rng, KEYWORDS_A);
-        const bKey = pick(rng, KEYWORDS_B);
-        const dnaTpl = pick(rng, DNA_TEMPLATES);
+        const keywords = getKeywordsTranslations();
+        const aKey = pick(rng, keywords.a);
+        const bKey = pick(rng, keywords.b);
+        const dnaTemplates = getDnaTemplatesTranslations();
+        const dnaTpl = pick(rng, dnaTemplates);
         const dnaText = dnaTpl
           .replaceAll("{name}", player.name)
           .replaceAll("{hook}", hook)
