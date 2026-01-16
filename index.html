@@ -122,6 +122,21 @@
         }
       }
     </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1204894220949193"
+     crossorigin="anonymous"></script>
+  <style>
+    .adsense-block {
+      margin: 16px 0;
+      display: flex;
+      justify-content: center;
+      min-height: 100px;
+    }
+    .adsbygoogle {
+      display: block;
+      margin: 16px auto;
+      text-align: center;
+    }
+  </style>
     <!-- responsive-base -->
     <style>
       /* responsive-base */
@@ -439,6 +454,40 @@
         © <span id="y"></span> FunnyFunny · Made for laughs & shares.
       </footer>
     </main>
+    </div>
+
+    <!-- 광고 영역 -->
+    <div class="w-full max-w-5xl mx-auto px-4 mt-8 mb-8">
+      <div class="adsense-block" style="min-height: 100px;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1204894220949193"
+             data-ad-slot="5145068706"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          // 광고 영역이 보일 때만 광고 로드
+          (function() {
+            const adBlock = document.querySelector('.adsense-block');
+            if (!adBlock) return;
+            
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  try {
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    observer.disconnect();
+                  } catch (e) {
+                    console.warn('AdSense error:', e);
+                  }
+                }
+              });
+            }, { rootMargin: '50px' });
+            
+            observer.observe(adBlock);
+          })();
+        </script>
+      </div>
     </div>
 
     <script>
